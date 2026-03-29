@@ -790,6 +790,7 @@ canvas#globe { display: block; }
   display: flex;
   flex-direction: row;
   gap: var(--space-card-gap);
+  align-items: flex-start;
 }
 
 /* Case study column (left) */
@@ -891,6 +892,10 @@ canvas#globe { display: block; }
   display: flex;
   flex-direction: column;
   gap: var(--space-card-gap);
+  position: sticky;
+  top: 0;
+  align-self: flex-start;
+  max-height: 100vh;
 }
 
 .case-other-heading {
@@ -1335,6 +1340,7 @@ canvas#globe { display: block; }
   display: flex;
   flex-direction: row;
   gap: var(--space-card-gap);
+  align-items: flex-start;
 }
 
 /* Project List */
@@ -1434,13 +1440,17 @@ canvas#globe { display: block; }
   transform: rotate(45deg);
 }
 
-/* Side Bentos (Backlog + Stack) */
+/* Side Bentos (Backlog + Stack + Video) */
 .pr-side-bentos {
   width: 309px;
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
   gap: var(--space-card-gap);
+  position: sticky;
+  top: 0;
+  align-self: flex-start;
+  max-height: 100vh;
 }
 
 .pr-bento-backlog {
@@ -1485,6 +1495,16 @@ canvas#globe { display: block; }
 
 .pr-tool-icon:hover { transform: scale(1.1) rotate(-3deg); }
 .pr-tool-icon img { width: 34px; height: 34px; object-fit: contain; }
+
+/* Side video bento (inside sticky sidebar) */
+.pr-side-video, .case-side-video {
+  flex: 1;
+  min-height: 200px;
+  background: var(--bg-card);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  position: relative;
+}
 
 /* Bottom Bentos */
 .pr-bottom-bentos {
@@ -1967,21 +1987,23 @@ canvas#globe { display: block; }
   .case-main-stack { flex-direction: column; }
   .case-right-stack { gap: 24px; padding-top: 24px; }
   .case-zone { flex-direction: column; }
-  .case-other-col { width: 100%; }
+  .case-other-col { width: 100%; position: relative; top: auto; max-height: none; }
   .case-other-col .portrait-card { height: auto; }
   .portrait-photo { height: 200px; }
+  .case-side-video { min-height: 260px; }
   .case-bottom-bentos { flex-direction: column; height: auto; }
-  .case-bento-contacts, .case-bento-video { min-height: 260px; }
+  .case-bento-contacts { min-height: 260px; }
 
   /* Projects page mobile */
   .projects-root { padding: 0 16px; }
   .projects-main-stack { flex-direction: column; }
   .pr-right-stack { gap: 24px; padding-top: 24px; }
   .pr-projects-zone { flex-direction: column; }
-  .pr-side-bentos { width: 100%; flex-direction: row; }
+  .pr-side-bentos { width: 100%; flex-direction: row; flex-wrap: wrap; position: relative; top: auto; max-height: none; }
   .pr-bento-backlog, .pr-bento-stack { flex: 1; height: 260px; }
+  .pr-side-video { width: 100%; min-height: 260px; }
   .pr-bottom-bentos { flex-direction: column; height: auto; }
-  .pr-bento-contacts, .pr-bento-video { min-height: 260px; }
+  .pr-bento-contacts { min-height: 260px; }
   .pr-card { height: auto; min-height: 120px; }
   .pr-card-photo { width: 80px; height: 80px; }
 }
