@@ -191,6 +191,10 @@ a, button, [role="button"],
   flex: 1;
 }
 
+.bio-text .cv-btn {
+  margin-top: 0;
+}
+
 .bio-text p {
   font-size: 14px;
   font-weight: 400;
