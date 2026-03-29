@@ -28,8 +28,7 @@ if (menuBtn && navOverlay) {
 }
 
 // Dot globe animation
-function initGlobe(canvasId) {
-  const canvas = document.getElementById(canvasId);
+function initGlobeCanvas(canvas) {
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
   const size = canvas.parentElement.offsetWidth;
@@ -65,4 +64,10 @@ function initGlobe(canvasId) {
   }
   drawGlobe();
 }
-initGlobe('globe');
+
+// Init globe by id (index, projects, stack pages)
+const globeById = document.getElementById('globe');
+if (globeById) initGlobeCanvas(globeById);
+
+// Init globe by class (case study pages)
+document.querySelectorAll('.globe-canvas').forEach(c => initGlobeCanvas(c));
