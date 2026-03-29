@@ -1,0 +1,21 @@
+/*
+  # Принудительный HTTPS
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+
+  # Запрет встраивания в iframe (защита от clickjacking)
+  X-Frame-Options: DENY
+
+  # Отключение MIME-сниффинга
+  X-Content-Type-Options: nosniff
+
+  # XSS-защита для старых браузеров
+  X-XSS-Protection: 1; mode=block
+
+  # Ограничение реферера
+  Referrer-Policy: strict-origin-when-cross-origin
+
+  # Политика разрешений (отключаем ненужные API)
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()
+
+  # Content Security Policy
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://ui-avatars.com https://cdn.jsdelivr.net; connect-src 'self'; frame-src https://www.loom.com; object-src 'none'; base-uri 'self'; form-action 'self'

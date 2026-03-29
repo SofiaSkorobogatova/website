@@ -1,0 +1,5 @@
+# Принудительный редирект с www на без www
+https://www.sofiisk.ru/* https://sofiisk.ru/:splat 301!
+
+# HTTP → HTTPS (Netlify делает это автоматически, но на всякий случай)
+http://sofiisk.ru/* https://sofiisk.ru/:splat 301!
