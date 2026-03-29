@@ -1817,6 +1817,69 @@ canvas#globe { display: block; }
    ══════════════════════════════════════════ */
 
 /* Desktop S / Tablet L */
+/* ══════════════════════════════════════════
+   LARGE SCREENS (iMac 24"+, >1440px)
+   ══════════════════════════════════════════ */
+@media (min-width: 1441px) {
+  .viewport-container {
+    padding: 60px;
+  }
+
+  .main-stack {
+    max-width: 1600px;
+    max-height: 900px;
+  }
+
+  .sidebar-home {
+    width: 380px;
+    padding-right: 32px;
+  }
+
+  .bio-text p { font-size: 15px; line-height: 21px; }
+  .profile-name .name { font-size: 15px; }
+  .bento-label { font-size: 32px; }
+  .bento-card-title { font-size: 20px; }
+  .header-bar { height: 80px; border-radius: 52px; }
+  .header-time span { font-size: 18px; }
+
+  /* Subpages */
+  .projects-root,
+  .cv-root,
+  .stack-root,
+  .case-root { padding: 0 60px; }
+
+  .contact-root { padding: 0 60px; }
+  .contact-main-stack { max-width: 1600px; }
+
+  .pr-card { height: 160px; }
+  .pr-card-photo { width: 130px; height: 130px; }
+}
+
+@media (min-width: 1921px) {
+  .main-stack {
+    max-width: 1800px;
+    max-height: 1000px;
+  }
+
+  .sidebar-home {
+    width: 420px;
+    gap: 56px;
+  }
+
+  .bio-text p { font-size: 16px; line-height: 22.4px; }
+  .bento-label { font-size: 36px; }
+  .header-bar { height: 88px; }
+
+  .projects-root,
+  .cv-root,
+  .stack-root,
+  .case-root,
+  .contact-root { padding: 0 80px; }
+}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE — Smaller screens
+   ══════════════════════════════════════════ */
 @media (max-width: 1199px) {
   .viewport-container { padding: 24px; }
   .sidebar-home { width: 280px; gap: 24px; padding-right: 16px; }
@@ -1932,4 +1995,57 @@ canvas#globe { display: block; }
   .contact-gallery img { flex: 1 1 calc(50% - 4px); min-width: 120px; }
   .pr-side-bentos { flex-direction: column; }
   .pr-bento-backlog, .pr-bento-stack { width: 100%; }
+}
+
+/* Galaxy Fold / Ultra-narrow (<300px) */
+@media (max-width: 299px) {
+  .viewport-container { padding: 8px; }
+
+  .sidebar-home { gap: 14px; }
+
+  .profile-link {
+    gap: 6px;
+  }
+
+  .sidebar-home .avatar,
+  .profile-link .avatar { width: 48px; height: 48px; }
+
+  .profile-name .name { font-size: 12px; }
+  .profile-name .role { font-size: 11px; }
+
+  .bio-text p { font-size: 13px; line-height: 18px; }
+
+  .social-btn { width: 40px; height: 40px; }
+  .social-btn svg { width: 14px; height: 14px; }
+  .social-links { gap: 8px; }
+
+  .cv-btn { font-size: 13px; height: 32px; padding: 0 16px; }
+
+  .header-bar { height: 56px; border-radius: 28px; padding: 8px; }
+  .header-time span { font-size: 13px; }
+  .menu-btn { width: 40px; height: 40px; }
+
+  .bento-label { font-size: 20px; }
+  .bento-card-title { font-size: 15px; padding: 14px 16px 0; }
+  .arrow-btn { width: 36px; height: 36px; font-size: 12px; }
+
+  /* Projects page */
+  .projects-root,
+  .cv-root,
+  .stack-root,
+  .case-root,
+  .contact-root { padding: 0 8px; }
+
+  .pr-card { padding: 10px; gap: 10px; min-height: 100px; }
+  .pr-card-photo { width: 64px; height: 64px; }
+  .pr-card-title { font-size: 15px; }
+  .pr-card-cat { font-size: 12px; }
+  .pr-card-arrow { width: 36px; height: 36px; }
+
+  .stack-tool-icon { width: 36px; height: 36px; }
+  .stack-tool-icon img { width: 20px; height: 20px; }
+  .stack-tool-name { font-size: 13px; }
+
+  .cv-bento { padding: 16px; }
+  .cv-bento-title { font-size: 16px; }
 }
