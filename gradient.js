@@ -63,72 +63,72 @@
       vec2 uv = vUv;
       float aspect = iResolution.x / iResolution.y;
       vec2 p = vec2(uv.x * aspect, uv.y);
-      float t = iTime * 0.04; // speed ≈ 4.0
+      float t = iTime * 0.12; // faster — orbs visibly drifting
 
       // Noise offsets for organic drift
       float n1 = snoise(vec2(t * 0.3, 0.0));
       float n2 = snoise(vec2(0.0, t * 0.3));
 
-      // ── 12 Aurora orbs ──
-      // Deep indigo / navy
-      vec3 c1 = vec3(0.06, 0.04, 0.28);
-      vec2 p1 = vec2(aspect * 0.2 + sin(t * 0.7) * 0.3, 0.8 + cos(t * 0.5) * 0.15);
-      float g1 = orb(p, p1, 0.55);
+      // ── 12 Aurora orbs — darker palette, wider movement ──
+      // Deep indigo
+      vec3 c1 = vec3(0.03, 0.02, 0.14);
+      vec2 p1 = vec2(aspect * 0.2 + sin(t * 0.7) * 0.45, 0.8 + cos(t * 0.5) * 0.35);
+      float g1 = orb(p, p1, 0.5);
 
-      // Rich purple
-      vec3 c2 = vec3(0.22, 0.04, 0.32);
-      vec2 p2 = vec2(aspect * 0.5 + cos(t * 0.6) * 0.25, 0.65 + sin(t * 0.8) * 0.2);
-      float g2 = orb(p, p2, 0.6);
+      // Dark plum
+      vec3 c2 = vec3(0.10, 0.02, 0.16);
+      vec2 p2 = vec2(aspect * 0.5 + cos(t * 0.6) * 0.4, 0.65 + sin(t * 0.8) * 0.35);
+      float g2 = orb(p, p2, 0.55);
 
-      // Deep blue
-      vec3 c3 = vec3(0.04, 0.10, 0.36);
-      vec2 p3 = vec2(aspect * 0.75 + sin(t * 0.9 + 1.5) * 0.2, 0.3 + cos(t * 0.4) * 0.25);
-      float g3 = orb(p, p3, 0.5);
+      // Navy
+      vec3 c3 = vec3(0.02, 0.05, 0.18);
+      vec2 p3 = vec2(aspect * 0.75 + sin(t * 0.9 + 1.5) * 0.35, 0.3 + cos(t * 0.4) * 0.4);
+      float g3 = orb(p, p3, 0.45);
 
-      // Teal / cyan
-      vec3 c4 = vec3(0.02, 0.18, 0.22);
-      vec2 p4 = vec2(aspect * 0.85 + cos(t * 0.5 + 2.0) * 0.15, 0.7 + sin(t * 0.6 + 1.0) * 0.2);
-      float g4 = orb(p, p4, 0.5);
+      // Dark teal
+      vec3 c4 = vec3(0.01, 0.08, 0.10);
+      vec2 p4 = vec2(aspect * 0.85 + cos(t * 0.5 + 2.0) * 0.35, 0.7 + sin(t * 0.6 + 1.0) * 0.35);
+      float g4 = orb(p, p4, 0.45);
 
-      // Violet
-      vec3 c5 = vec3(0.16, 0.02, 0.26);
-      vec2 p5 = vec2(aspect * 0.35 + sin(t * 0.8 + 3.0) * 0.35, 0.25 + cos(t * 0.7 + 2.0) * 0.2);
-      float g5 = orb(p, p5, 0.45);
+      // Deep violet
+      vec3 c5 = vec3(0.08, 0.01, 0.14);
+      vec2 p5 = vec2(aspect * 0.35 + sin(t * 0.8 + 3.0) * 0.5, 0.25 + cos(t * 0.7 + 2.0) * 0.4);
+      float g5 = orb(p, p5, 0.4);
 
-      // Dark azure
-      vec3 c6 = vec3(0.05, 0.08, 0.30);
-      vec2 p6 = vec2(aspect * 0.6 + cos(t * 0.4 + 1.0) * 0.3, 0.5 + sin(t * 0.5 + 3.0) * 0.3);
-      float g6 = orb(p, p6, 0.65);
+      // Abyss blue
+      vec3 c6 = vec3(0.02, 0.04, 0.16);
+      vec2 p6 = vec2(aspect * 0.6 + cos(t * 0.4 + 1.0) * 0.45, 0.5 + sin(t * 0.5 + 3.0) * 0.45);
+      float g6 = orb(p, p6, 0.55);
 
-      // Deep magenta-purple
-      vec3 c7 = vec3(0.18, 0.03, 0.22);
-      vec2 p7 = vec2(aspect * 0.15 + sin(t * 0.6 + 4.0) * 0.2, 0.45 + cos(t * 0.9 + 1.5) * 0.25);
-      float g7 = orb(p, p7, 0.4);
+      // Blackberry
+      vec3 c7 = vec3(0.09, 0.01, 0.11);
+      vec2 p7 = vec2(aspect * 0.15 + sin(t * 0.6 + 4.0) * 0.4, 0.45 + cos(t * 0.9 + 1.5) * 0.4);
+      float g7 = orb(p, p7, 0.38);
 
-      // Ocean blue
-      vec3 c8 = vec3(0.03, 0.12, 0.28);
-      vec2 p8 = vec2(aspect * 0.9 + cos(t * 0.7 + 2.5) * 0.15, 0.15 + sin(t * 0.3 + 4.0) * 0.15);
-      float g8 = orb(p, p8, 0.5);
+      // Deep ocean
+      vec3 c8 = vec3(0.01, 0.06, 0.14);
+      vec2 p8 = vec2(aspect * 0.9 + cos(t * 0.7 + 2.5) * 0.3, 0.15 + sin(t * 0.3 + 4.0) * 0.4);
+      float g8 = orb(p, p8, 0.45);
 
-      // Soft purple glow
-      vec3 c9 = vec3(0.14, 0.06, 0.30);
-      vec2 p9 = vec2(aspect * 0.45 + sin(t * 0.5 + 5.0) * 0.25, 0.85 + cos(t * 0.6 + 3.0) * 0.1);
-      float g9 = orb(p, p9, 0.5);
+      // Muted purple
+      vec3 c9 = vec3(0.07, 0.03, 0.15);
+      vec2 p9 = vec2(aspect * 0.45 + sin(t * 0.5 + 5.0) * 0.4, 0.85 + cos(t * 0.6 + 3.0) * 0.3);
+      float g9 = orb(p, p9, 0.45);
 
-      // Dark teal accent
-      vec3 c10 = vec3(0.02, 0.14, 0.18);
-      vec2 p10 = vec2(aspect * 0.3 + cos(t * 0.8 + 1.0) * 0.3, 0.1 + sin(t * 0.7 + 5.0) * 0.15);
-      float g10 = orb(p, p10, 0.45);
+      // Shadow teal
+      vec3 c10 = vec3(0.01, 0.06, 0.08);
+      vec2 p10 = vec2(aspect * 0.3 + cos(t * 0.8 + 1.0) * 0.45, 0.1 + sin(t * 0.7 + 5.0) * 0.35);
+      float g10 = orb(p, p10, 0.4);
 
-      // Midnight blue
-      vec3 c11 = vec3(0.04, 0.06, 0.24);
-      vec2 p11 = vec2(aspect * 0.7 + sin(t * 0.3 + 6.0) * 0.2, 0.9 + cos(t * 0.5 + 4.0) * 0.1);
-      float g11 = orb(p, p11, 0.55);
+      // Midnight
+      vec3 c11 = vec3(0.02, 0.03, 0.12);
+      vec2 p11 = vec2(aspect * 0.7 + sin(t * 0.3 + 6.0) * 0.35, 0.9 + cos(t * 0.5 + 4.0) * 0.3);
+      float g11 = orb(p, p11, 0.5);
 
-      // Warm purple
-      vec3 c12 = vec3(0.20, 0.05, 0.20);
-      vec2 p12 = vec2(aspect * 0.55 + cos(t * 0.9 + 3.5) * 0.2, 0.4 + sin(t * 0.4 + 6.0) * 0.3);
-      float g12 = orb(p, p12, 0.48);
+      // Dark wine
+      vec3 c12 = vec3(0.10, 0.02, 0.10);
+      vec2 p12 = vec2(aspect * 0.55 + cos(t * 0.9 + 3.5) * 0.4, 0.4 + sin(t * 0.4 + 6.0) * 0.45);
+      float g12 = orb(p, p12, 0.42);
 
       // Combine all orbs
       vec3 col = vec3(0.0);
@@ -149,8 +149,8 @@
       float n = snoise(p * 1.2 + t * 0.5) * 0.015;
       col += n;
 
-      // Boost brightness slightly so orbs are visible
-      col *= 1.6;
+      // Gentle boost — keep it moody
+      col *= 1.3;
 
       // Soft vignette
       float vig = 1.0 - 0.4 * pow(length((uv - 0.5) * 1.8), 2.0);
