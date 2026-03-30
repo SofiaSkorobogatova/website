@@ -1048,6 +1048,20 @@ canvas#globe { display: block; }
   display: block;
 }
 
+/* Case gallery images */
+.case-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.case-gallery img {
+  width: 100%;
+  display: block;
+  border-radius: var(--radius-md);
+}
+
 /* Categories card */
 .case-categories {
   background: var(--bg-card);
