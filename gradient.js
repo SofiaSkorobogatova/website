@@ -63,7 +63,7 @@
       vec2 uv = vUv;
       float aspect = iResolution.x / iResolution.y;
       vec2 p = vec2(uv.x * aspect, uv.y);
-      float t = iTime * 0.12; // faster — orbs visibly drifting
+      float t = iTime * 0.35; // fast — clearly visible movement
 
       // Noise offsets for organic drift
       float n1 = snoise(vec2(t * 0.3, 0.0));
