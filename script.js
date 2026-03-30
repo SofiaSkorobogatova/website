@@ -208,3 +208,46 @@ if (globeById) initGlobeCanvas(globeById);
 
 // Init globe by class (case study pages)
 document.querySelectorAll('.globe-canvas').forEach(c => initGlobeCanvas(c));
+
+// ── Shimmer loading for images ──
+(function() {
+  // Wrap all content images in shimmer containers
+  const selectors = [
+    '.case-photo-wrapper img',
+    '.case-gallery img',
+    '.portrait-photo img',
+    '.project-thumb img',
+    '.pr-card img',
+    '.bento-projects img',
+    '.mosaic img'
+  ];
+
+  document.querySelectorAll(selectors.join(', ')).forEach(img => {
+    // Skip if already wrapped
+    if (img.parentElement.classList.contains('shimmer-wrap')) return;
+
+    const wrapper = document.createElement('div');
+    wrapper.className = 'shimmer-wrap';
+    img.parentElement.insertBefore(wrapper, img);
+    wrapper.appendChild(img);
+
+    // Add lazy loading for gallery images
+    if (img.closest('.case-gallery')) {
+      img.loading = 'lazy';
+    }
+
+    if (img.complete && img.naturalHeight > 0) {
+      wrapper.classList.add('loaded');
+    } else {
+      img.addEventListener('load', () => wrapper.classList.add('loaded'));
+      img.addEventListener('error', () => wrapper.classList.add('loaded'));
+    }
+  });
+
+  // Shimmer for bento cards — add shimmer class and remove after page settled
+  document.querySelectorAll('.bento-card').forEach(card => {
+    card.classList.add('shimmer-card');
+    // Remove shimmer after a short delay to show content loaded
+    setTimeout(() => card.classList.add('loaded'), 600 + Math.random() * 400);
+  });
+})();

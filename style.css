@@ -588,6 +588,94 @@ a:active > .arrow-btn { transform: rotate(0deg) scale(0.9); transition: transfor
   100% { background-position: -200% 0; }
 }
 
+/* ── SHIMMER LOADING ── */
+@keyframes shimmer {
+  0% { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+
+.shimmer-wrap {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+}
+
+.shimmer-wrap::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,0.04) 40%,
+    rgba(255,255,255,0.08) 50%,
+    rgba(255,255,255,0.04) 60%,
+    rgba(255,255,255,0) 100%
+  );
+  background-size: 400px 100%;
+  animation: shimmer 1.6s ease-in-out infinite;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.shimmer-wrap.loaded::before {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.shimmer-wrap img {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.shimmer-wrap.loaded img {
+  opacity: 1;
+}
+
+/* Shimmer for bento cards */
+.bento-card.shimmer-card {
+  background: linear-gradient(
+    90deg,
+    var(--bg-card) 0%,
+    rgba(30,30,30,0.65) 40%,
+    rgba(40,40,40,0.65) 50%,
+    rgba(30,30,30,0.65) 60%,
+    var(--bg-card) 100%
+  );
+  background-size: 400px 100%;
+  animation: shimmer 1.6s ease-in-out infinite;
+}
+
+.bento-card.shimmer-card.loaded {
+  background: var(--bg-card);
+  animation: none;
+}
+
+/* Shimmer for portrait cards in sidebar */
+.portrait-card .portrait-photo .shimmer-wrap {
+  background: rgba(255,255,255,0.03);
+  min-height: 120px;
+}
+
+/* Shimmer for case hero image */
+.case-photo-wrapper .shimmer-wrap {
+  background: rgba(255,255,255,0.03);
+  min-height: 300px;
+}
+
+/* Shimmer for gallery images */
+.case-gallery .shimmer-wrap {
+  background: rgba(255,255,255,0.03);
+  min-height: 200px;
+}
+
+/* Shimmer for project cards */
+.pr-card .project-thumb .shimmer-wrap {
+  background: rgba(255,255,255,0.03);
+  min-height: 80px;
+  border-radius: 16px;
+}
+
 /* ── PROJECTS CARD (large, left top) ── */
 .bento-projects {
   flex: 1;
