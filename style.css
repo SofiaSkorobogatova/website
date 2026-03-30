@@ -156,9 +156,9 @@ a, button, [role="button"],
 .nav-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.85);
-  backdrop-filter: blur(32px);
-  -webkit-backdrop-filter: blur(32px);
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(40px) saturate(1.2);
+  -webkit-backdrop-filter: blur(40px) saturate(1.2);
   z-index: 200;
   display: flex;
   flex-direction: column;
@@ -423,6 +423,8 @@ a, button, [role="button"],
 }
 
 .menu-btn:hover { background: rgba(255,255,255,0.06); }
+.menu-btn:hover span:nth-child(1) { transform: translateY(-2px); }
+.menu-btn:hover span:nth-child(2) { transform: translateY(2px); }
 
 .menu-btn span {
   display: block;
@@ -430,7 +432,7 @@ a, button, [role="button"],
   height: 1px;
   background: var(--text-primary);
   border-radius: var(--radius-xs);
-  transition: transform 0.3s var(--ease), opacity 0.3s;
+  transition: transform 0.3s var(--ease), opacity 0.3s, width 0.3s var(--ease);
 }
 
 .menu-btn.open span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
@@ -509,12 +511,13 @@ a, button, [role="button"],
   transition: transform 0.3s var(--ease-spring);
 }
 
-/* Arrow rotates back on hover */
+/* Arrow stays horizontal, scales on hover */
 .bento-card:hover .arrow-btn,
-a:hover > .arrow-btn { transform: rotate(0deg) scale(1.1); }
+a:hover > .arrow-btn { transform: rotate(45deg) scale(1.15); }
 
+/* Arrow press state */
 .bento-card:active .arrow-btn,
-a:active > .arrow-btn { transform: rotate(0deg) scale(0.95); transition: transform 0.1s; }
+a:active > .arrow-btn { transform: rotate(45deg) scale(0.9); transition: transform 0.1s; }
 
 .bento-label {
   position: absolute;
@@ -570,8 +573,8 @@ a:active > .arrow-btn { transform: rotate(0deg) scale(0.95); transition: transfo
   bottom: 0;
   left: 0;
   right: 0;
-  height: 50%;
-  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 50%, transparent 100%);
+  height: 60%;
+  background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.7) 40%, transparent 100%);
   pointer-events: none;
   z-index: 1;
   border-radius: 0 0 var(--radius-xl) var(--radius-xl);
@@ -594,9 +597,9 @@ a:active > .arrow-btn { transform: rotate(0deg) scale(0.95); transition: transfo
   gap: 4px;
 }
 
-.mosaic-col.scroll-up { animation: mosaicUp 25s linear infinite; }
-.mosaic-col.scroll-down { animation: mosaicDown 28s linear infinite; }
-.mosaic-col.scroll-up2 { animation: mosaicUp 22s linear infinite; }
+.mosaic-col.scroll-up { animation: mosaicUp 30s linear infinite; }
+.mosaic-col.scroll-down { animation: mosaicDown 20s linear infinite; }
+.mosaic-col.scroll-up2 { animation: mosaicUp 25s linear infinite; }
 
 @keyframes mosaicUp {
   0% { transform: translateY(0); }
@@ -1108,10 +1111,10 @@ canvas#globe { display: block; }
   display: flex;
   flex-direction: column;
   gap: 12px;
-  padding: 12px;
+  padding: 12px 12px 28px;
   background: var(--bg-card);
   border-radius: var(--radius-xl);
-  height: 246px;
+  height: 262px;
   text-decoration: none;
   color: var(--text-primary);
   transition: background 0.3s var(--ease), transform 0.3s var(--ease);
@@ -1563,12 +1566,14 @@ canvas#globe { display: block; }
   text-decoration: none;
   color: var(--text-primary);
   align-items: center;
-  transition: background 0.3s var(--ease), transform 0.3s var(--ease), border-color 0.3s var(--ease);
+  transition: background 0.3s var(--ease), transform 0.4s var(--ease), border-color 0.3s var(--ease), filter 0.4s var(--ease), box-shadow 0.4s var(--ease);
 }
 
 .pr-card:hover {
   background: rgba(26, 26, 26, 0.7);
-  transform: translateX(4px);
+  transform: translateY(-4px);
+  filter: brightness(1.08);
+  box-shadow: 0 8px 32px rgba(255, 255, 255, 0.06);
   border-color: rgba(255, 255, 255, 0.12);
 }
 .pr-card:active {
@@ -1642,7 +1647,11 @@ canvas#globe { display: block; }
 }
 
 .pr-card:hover .pr-card-arrow {
-  transform: rotate(0deg);
+  transform: rotate(45deg) scale(1.15);
+}
+.pr-card:active .pr-card-arrow {
+  transform: rotate(45deg) scale(0.9);
+  transition: transform 0.1s;
 }
 
 /* Side Bentos (Backlog + Stack + Video) */
@@ -1848,6 +1857,16 @@ canvas#globe { display: block; }
   overflow: hidden;
   position: relative;
 }
+.contact-bento-projects::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 60%;
+  background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.7) 40%, transparent 100%);
+  pointer-events: none;
+  z-index: 1;
+  border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+}
 
 .contact-bento-projects .projects-mosaic {
   position: absolute;
@@ -2002,6 +2021,16 @@ canvas#globe { display: block; }
 /* Stack side bento — MyProjects with mosaic */
 .stack-side-projects {
   position: relative;
+}
+.stack-side-projects::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 60%;
+  background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.7) 40%, transparent 100%);
+  pointer-events: none;
+  z-index: 1;
+  border-radius: 0 0 var(--radius-xl) var(--radius-xl);
 }
 
 .stack-side-projects .mini-mosaic {
