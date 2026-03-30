@@ -27,7 +27,140 @@ if (menuBtn && navOverlay) {
   });
 }
 
-// Dot globe animation
+// ── Active nav indicator ──
+(function() {
+  const path = window.location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('.nav-overlay a, nav a').forEach(a => {
+    const href = a.getAttribute('href');
+    if (href === path || (path === 'index.html' && href === 'index.html')) {
+      a.classList.add('active');
+    }
+  });
+})();
+
+// ── Page transitions ──
+(function() {
+  document.querySelectorAll('a[href]').forEach(a => {
+    const href = a.getAttribute('href');
+    if (!href || href.startsWith('http') || href.startsWith('#') || href.startsWith('mailto:') || a.getAttribute('target') === '_blank') return;
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      const content = document.querySelector('.viewport-container, .projects-root, .cv-root, .contacts-root, .stack-root, .case-root');
+      if (content) {
+        content.classList.add('page-content', 'exiting');
+        setTimeout(() => { window.location.href = href; }, 250);
+      } else {
+        window.location.href = href;
+      }
+    });
+  });
+})();
+
+// ── Custom cursor (dot follower) ──
+(function() {
+  if (window.matchMedia('(pointer: coarse)').matches) return; // skip on touch devices
+  const dot = document.createElement('div');
+  dot.className = 'cursor-dot';
+  document.body.appendChild(dot);
+
+  let mouseX = 0, mouseY = 0, dotX = 0, dotY = 0;
+
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    if (!dot.classList.contains('visible')) dot.classList.add('visible');
+  });
+
+  document.addEventListener('mouseleave', () => dot.classList.remove('visible'));
+
+  function animateCursor() {
+    dotX += (mouseX - dotX) * 0.15;
+    dotY += (mouseY - dotY) * 0.15;
+    dot.style.left = dotX + 'px';
+    dot.style.top = dotY + 'px';
+    requestAnimationFrame(animateCursor);
+  }
+  animateCursor();
+
+  // Expand on interactive elements
+  const hoverTargets = 'a, button, .bento-card, .social-btn, .pr-card, .cv-btn, .menu-btn, .portrait-card, .sidebar-card';
+  document.addEventListener('mouseover', (e) => {
+    if (e.target.closest(hoverTargets)) dot.classList.add('expanded');
+  });
+  document.addEventListener('mouseout', (e) => {
+    if (e.target.closest(hoverTargets)) dot.classList.remove('expanded');
+  });
+})();
+
+// ── Magnetic buttons ──
+(function() {
+  if (window.matchMedia('(pointer: coarse)').matches) return;
+  const magnets = document.querySelectorAll('.arrow-btn, .cv-btn');
+  const threshold = 80;
+
+  magnets.forEach(el => {
+    el.style.transition = 'transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)';
+
+    el.closest('a, button, .bento-card')?.addEventListener('mousemove', (e) => {
+      const rect = el.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      const dx = e.clientX - cx;
+      const dy = e.clientY - cy;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < threshold) {
+        const pull = (1 - dist / threshold) * 8;
+        const baseTransform = el.classList.contains('arrow-btn') ? 'rotate(45deg) scale(1.1)' : '';
+        el.style.transform = `${baseTransform} translate(${dx * pull / threshold}px, ${dy * pull / threshold}px)`;
+      }
+    });
+
+    el.closest('a, button, .bento-card')?.addEventListener('mouseleave', () => {
+      el.style.transform = '';
+    });
+  });
+})();
+
+// ── Card tilt effect (3D perspective) ──
+(function() {
+  if (window.matchMedia('(pointer: coarse)').matches) return;
+  const cards = document.querySelectorAll('.bento-card');
+  const maxTilt = 3;
+
+  cards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      const tiltX = -y * maxTilt;
+      const tiltY = x * maxTilt;
+      card.style.transform = `perspective(800px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateY(-4px)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
+  });
+})();
+
+// ── Scroll-triggered entrance animations ──
+(function() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.case-body-card section, .cv-section, .pr-card, .sidebar-card, .portrait-card, .contact-link').forEach(el => {
+    el.classList.add('scroll-reveal');
+    observer.observe(el);
+  });
+})();
+
+// ── Globe loading state ──
 function initGlobeCanvas(canvas) {
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
@@ -38,6 +171,10 @@ function initGlobeCanvas(canvas) {
   const R = size * 0.46;
   const rows = 22, cols = 22;
   let angle = 0;
+
+  // Mark parent as loaded
+  const wrap = canvas.closest('.globe-wrap');
+  if (wrap) wrap.classList.add('loaded');
 
   function drawGlobe() {
     ctx.clearRect(0, 0, size, size);
