@@ -216,9 +216,7 @@ document.querySelectorAll('.globe-canvas').forEach(c => initGlobeCanvas(c));
     '.case-photo-wrapper img',
     '.case-gallery img',
     '.portrait-photo img',
-    '.project-thumb img',
-    '.pr-card img',
-    '.bento-projects img',
+    '.pr-card-photo img',
     '.mosaic img'
   ];
 
