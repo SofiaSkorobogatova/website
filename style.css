@@ -16,10 +16,10 @@
 
 :root {
   --bg-page: #000;
-  --bg-card: rgba(18, 18, 18, 0.65);
-  --bg-card-solid: #121212;
-  --bg-card-black: #000;
-  --bg-card-muted: #242424;
+  --bg-card: rgba(18, 18, 18, 0.3);
+  --bg-card-solid: rgba(18, 18, 18, 0.3);
+  --bg-card-black: rgba(0, 0, 0, 0.35);
+  --bg-card-muted: rgba(24, 24, 24, 0.3);
   --bg-icon: #fff;
   --text-primary: #fff;
   --text-secondary: rgb(179, 179, 179);
@@ -149,6 +149,18 @@ a, button, [role="button"],
 .header { position: relative; z-index: 2; }
 .nav-overlay { z-index: 200; }
 
+/* ── Global glassmorphism for all cards ── */
+.bento-card, .pr-card, .sidebar-card, .case-card,
+.cv-info-card, .cv-exp-card, .cv-skills-card, .cv-edu-card,
+.stack-category, .stack-item,
+.contact-bento-projects, .contact-bento-video,
+.contact-card-quote, .contact-card-info,
+.case-header-card, .case-info-card, .case-text-card {
+  backdrop-filter: blur(40px) saturate(1.1);
+  -webkit-backdrop-filter: blur(40px) saturate(1.1);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
 /* ── HOMEPAGE VIGNETTE ── */
 .vignette-overlay {
   position: absolute;
@@ -180,9 +192,9 @@ a, button, [role="button"],
 .nav-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.55);
-  backdrop-filter: blur(40px) saturate(1.2);
-  -webkit-backdrop-filter: blur(40px) saturate(1.2);
+  background: rgba(0,0,0,0.25);
+  backdrop-filter: blur(60px) saturate(1.2);
+  -webkit-backdrop-filter: blur(60px) saturate(1.2);
   z-index: 200;
   display: flex;
   flex-direction: column;
@@ -411,9 +423,9 @@ a, button, [role="button"],
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  background: rgba(18, 18, 18, 0.5);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+  background: rgba(18, 18, 18, 0.25);
+  backdrop-filter: blur(40px) saturate(1.1);
+  -webkit-backdrop-filter: blur(40px) saturate(1.1);
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: var(--radius-2xl);
   padding: 12px;
@@ -490,9 +502,9 @@ a, button, [role="button"],
   display: flex;
   flex-direction: column;
   cursor: pointer;
-  background: rgba(18, 18, 18, 0.6);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+  background: rgba(18, 18, 18, 0.25);
+  backdrop-filter: blur(40px) saturate(1.1);
+  -webkit-backdrop-filter: blur(40px) saturate(1.1);
   border: 1px solid rgba(255, 255, 255, 0.06);
   transition: transform 0.4s var(--ease),
               filter 0.4s var(--ease),
@@ -868,7 +880,9 @@ canvas#globe { display: block; }
   position: sticky;
   top: 0;
   height: 68px;
-  background: var(--bg-page);
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(40px) saturate(1.1);
+  -webkit-backdrop-filter: blur(40px) saturate(1.1);
   display: flex;
   align-items: center;
   padding: 0 16px;
@@ -1023,8 +1037,8 @@ canvas#globe { display: block; }
 
 .sidebar-card {
   background: var(--bg-card);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(40px) saturate(1.1);
+  -webkit-backdrop-filter: blur(40px) saturate(1.1);
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 20px;
   padding: 22px;
@@ -1033,7 +1047,7 @@ canvas#globe { display: block; }
 }
 .sidebar-card:hover { border-color: rgba(255, 255, 255, 0.12); }
 
-.sidebar-card:hover { background: #1a1a1a; transform: translateY(-2px); box-shadow: 0 12px 48px rgba(90, 50, 160, 0.35), 0 4px 20px rgba(70, 30, 140, 0.25); }
+.sidebar-card:hover { background: rgba(26, 26, 26, 0.4); transform: translateY(-2px); box-shadow: 0 12px 48px rgba(90, 50, 160, 0.35), 0 4px 20px rgba(70, 30, 140, 0.25); }
 .sidebar-card:active { transform: scale(0.98); transition: transform 0.1s; }
 .sidebar-card .card-title { font-size: 17px; font-weight: 600; margin-bottom: 14px; }
 
@@ -1198,8 +1212,8 @@ canvas#globe { display: block; }
 /* Content card (rich text) */
 .case-body-card {
   background: var(--bg-card);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(40px) saturate(1.1);
+  -webkit-backdrop-filter: blur(40px) saturate(1.1);
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: var(--radius-xl);
   padding: 24px;
@@ -1609,8 +1623,8 @@ canvas#globe { display: block; }
 .cv-bento-stack {
   flex: 1;
   background: var(--bg-card);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(40px) saturate(1.1);
+  -webkit-backdrop-filter: blur(40px) saturate(1.1);
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: var(--radius-xl);
   overflow: hidden;
@@ -1718,8 +1732,8 @@ canvas#globe { display: block; }
   gap: 12px;
   padding: 12px;
   background: var(--bg-card);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(40px) saturate(1.1);
+  -webkit-backdrop-filter: blur(40px) saturate(1.1);
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: var(--radius-xl);
   height: 144px;
@@ -1730,7 +1744,7 @@ canvas#globe { display: block; }
 }
 
 .pr-card:hover {
-  background: rgba(26, 26, 26, 0.7);
+  background: rgba(26, 26, 26, 0.35);
   transform: translateY(-4px);
   filter: brightness(1.08);
   box-shadow: 0 12px 48px rgba(90, 50, 160, 0.35), 0 4px 20px rgba(70, 30, 140, 0.25);
@@ -1980,8 +1994,8 @@ canvas#globe { display: block; }
 .contact-card-info {
   flex: 1;
   background: var(--bg-card);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(40px) saturate(1.1);
+  -webkit-backdrop-filter: blur(40px) saturate(1.1);
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: var(--radius-xl);
   padding: 24px;
