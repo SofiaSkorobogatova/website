@@ -470,7 +470,7 @@ canvas#globe { display: block; }
 .bento-stack {
   height: 242px;
   flex-shrink: 0;
-  background: var(--bg-card-black);
+  background: var(--bg-card);
   padding-bottom: 60px;
 }
 
@@ -1456,7 +1456,7 @@ canvas#globe { display: block; }
 .pr-bento-backlog {
   height: 300px;
   background: var(--bg-card);
-  padding: 48px 0 24px;
+  padding-bottom: 60px;
 }
 
 .pr-bento-backlog .qr-wrap {
@@ -1468,7 +1468,7 @@ canvas#globe { display: block; }
 
 .pr-bento-stack {
   height: 300px;
-  background: var(--bg-card-black);
+  background: var(--bg-card);
   padding-bottom: 60px;
 }
 
