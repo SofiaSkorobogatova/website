@@ -110,7 +110,7 @@ if (menuBtn && navOverlay) {
       const dist = Math.sqrt(dx * dx + dy * dy);
       if (dist < threshold) {
         const pull = (1 - dist / threshold) * 8;
-        const baseTransform = el.classList.contains('arrow-btn') ? 'rotate(45deg) scale(1.1)' : '';
+        const baseTransform = el.classList.contains('arrow-btn') ? 'rotate(0deg) scale(1.1)' : '';
         el.style.transform = `${baseTransform} translate(${dx * pull / threshold}px, ${dy * pull / threshold}px)`;
       }
     });
